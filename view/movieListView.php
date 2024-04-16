@@ -3,10 +3,10 @@
 <div class="row">
     <div class="col-md-4 offset-md-8">
         <form method="get">
+            <input type="hidden" name="films" value="">
             <div class="form-group has-btn">
                 <input type="search" id="search" name="title" value="<?= $search; ?>" class="form-control"
                        placeholder="Rechercher un film ou une série">
-
                 <button type="submit" class="btn btn-block bg-red">Valider</button>
             </div>
         </form>
@@ -16,7 +16,7 @@
 <div class="media-list d-flex flex-column">
     <div class="row">
         <?php if (!isset($_GET['title']) || empty($_GET['title']) ){
-        //var_dump($movies);
+        //var_dump($_GET['title']);
             foreach( $movies as $movie ): ?>
                 <a class="item" href="index.php?movie=<?= $movie['id']; ?>">
                     <div class="video">

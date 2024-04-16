@@ -9,7 +9,7 @@ require_once( 'model/media.php' );
 function allMoviesPage() {
 
   $search = $_GET['title'] ?? null;
-  $mediasSearch = Media::filterMedias( $search );
+  $mediasSearch = Media::filterMovies( $search );
   $movies = Media::getAllMovies();
   require('view/movieListView.php');
 
@@ -33,8 +33,9 @@ function moviePage(){
     }
 }
 function allSeriesPage(){
+
     $search = $_GET['title'] ?? null;
-    $mediasSearch = Media::filterMedias( $search );
+    $mediasSearch = Media::filterSeries($search);
     $series = Media::getAllSeries();
     require('view/seriesListView.php');
 }

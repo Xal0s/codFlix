@@ -88,12 +88,25 @@ class Media {
     * -------- GET LIST --------
     ***************************/
 
-    public static function filterMedias( $title ) {
-
+    public static function filterMovies($title) {
         // Open database connection
         $db   = init_db();
 
-        $req  = $db->prepare( "SELECT * FROM medias WHERE LOWER(title) LIKE ?" );
+        $req  = $db->prepare( "SELECT * FROM medias WHERE LOWER(title) LIKE ? AND type = 'film'" );
+        $req->execute( array( '%' . strtolower($title) . '%' ));
+
+        // Close databse connection
+        $db   = null;
+
+        return $req->fetchAll();
+
+    }
+
+    public static function filterSeries($title) {
+        // Open database connection
+        $db   = init_db();
+
+        $req  = $db->prepare( "SELECT * FROM medias WHERE LOWER(title) LIKE ? AND type = 'serie'" );
         $req->execute( array( '%' . strtolower($title) . '%' ));
 
         // Close databse connection
