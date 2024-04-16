@@ -149,7 +149,7 @@ class Media {
         $db   = init_db();
         $req  = $db->prepare( "SELECT * FROM medias  
         INNER JOIN genre ON medias.genre_id = genre.id
-        WHERE medias.id = ? AND type = 'serie'");
+        WHERE medias.id = ? AND medias.type = 'serie'");
         $req->execute([$id]);
 
         $db   = null;

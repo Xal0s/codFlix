@@ -6,11 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ac8ede56-dec0-48d2-a519-b76887e9adab" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/mediaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/mediaController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/media.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/media.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/movieListView.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/movieListView.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/seriesListView.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/seriesListView.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/serieView.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/serieView.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +37,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "detailedMedia",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "C:/xampp/htdocs/codFlix",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",

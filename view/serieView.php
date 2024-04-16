@@ -5,7 +5,7 @@
         <h1 class="movie-title"><?= $serie['title'] ?></h1>
         <em class="movie-genre"><strong><?= $serie['name'] ?></strong></em>
     </div>
-    <div class="d-flex row justify-content-sm-center">
+    <div class="d-flex row">
         <div class="embed-responsive embed-responsive-16by9 video-container">
             <iframe class="embed-responsive-item" src="<?= $serie['trailer_url'] ?>" allowfullscreen></iframe>
         </div>
