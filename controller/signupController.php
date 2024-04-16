@@ -22,3 +22,20 @@ function signupPage() {
 /***************************
 * ----- SIGNUP FUNCTION -----
 ***************************/
+
+
+function signup() {
+    try {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $user = new User();
+            $user->setEmail($_POST['email']);
+            $user->setPassword($_POST['password']);
+            $user->createUser();
+        } else {
+            throw new Exception( "L'inscription n'a pas pu aboutir" );
+        }
+    } catch ( Exception $e ) {
+        echo $e->getMessage();
+    }
+
+}

@@ -13,37 +13,35 @@ require_once( 'controller/mediaController.php' );
 
 if ( isset( $_GET['action'] ) ):
 
-  switch( $_GET['action']):
+    switch( $_GET['action']):
 
-    case 'login':
+        case 'login':
+            // if not connected, redirecting user to loginPage
+            if ( !empty( $_POST ) ) login( $_POST );
+            else loginPage();
+        break;
 
-      if ( !empty( $_POST ) ) login( $_POST );
-      else loginPage();
+        case 'signup':
+            // if sign up form has been completed we add new user to database
+          if ( !empty( $_POST ) ) signup();
+          signupPage();
 
-    break;
+        break;
 
-    case 'signup':
+        case 'logout':
+            logout();
+            break;
 
-      signupPage();
-
-    break;
-
-    case 'logout':
-
-      logout();
-
-    break;
-
-  endswitch;
+    endswitch;
 
 else:
 
-  $user_id = isset( $_SESSION['user_id'] ) ? $_SESSION['user_id'] : false;
+    $user_id = isset( $_SESSION['user_id'] ) ? $_SESSION['user_id'] : false;
 
-  if( $user_id ):
-    mediaPage();
-  else:
-    homePage();
-  endif;
+    if( $user_id ):
+        mediaPage();
+    else:
+        homePage();
+    endif;
 
 endif;

@@ -9,7 +9,7 @@ function init_db()
     try {
 
         $host = $_ENV['CODFLIX_DB_HOST'] ?? 'localhost';
-        $dbname = $_ENV['CODFLIX_DB_NAME'] ?? 'discoding';
+        $dbname = $_ENV['CODFLIX_DB_NAME'] ?? 'codflix';
         $charset = $_ENV['CODFLIX_DB_CHARSET'] ?? 'utf8';
         $user = $_ENV['CODFLIX_DB_USER'] ?? 'root';
         $password = $_ENV['CODFLIX_DB_PASSWORD'] ?? '';
