@@ -9,6 +9,21 @@
     margin-bottom: 40px;
 }
 
+.video-container{
+    width: 40%;
+    margin-bottom: 40px;
+}
+
+.movie-genre{
+    margin-bottom: 30px;
+}
+
+.synopsis{
+    margin-left: 17px;
+    margin-right: 17px;
+
+}
+
 .media-list .item {
     flex-basis: 24%;
     margin: 4px;

@@ -7,10 +7,21 @@ require_once( 'controller/loginController.php' );
 require_once( 'controller/signupController.php' );
 require_once( 'controller/mediaController.php' );
 
+/***************************
+ * ----- HANDLE MEDIA -----*
+ ***************************/
+//if media is set in url we send users on detailed media page
+if (isset( $_GET['movie'] ) ){
+    moviePage();
+} elseif (isset( $_GET['serie'])){
+    seriePage();
+}
+
+
 /**************************
 * ----- HANDLE ACTION -----
 ***************************/
-
+//if action is set in url we send users on pages he asked
 if ( isset( $_GET['action'] ) ):
 
     switch( $_GET['action']):
@@ -31,17 +42,26 @@ if ( isset( $_GET['action'] ) ):
         case 'logout':
             logout();
             break;
-
     endswitch;
 
 else:
 
-    $user_id = isset( $_SESSION['user_id'] ) ? $_SESSION['user_id'] : false;
+    $user_id = $_SESSION['user_id'] ?? false;
 
-    if( $user_id ):
-        mediaPage();
-    else:
+    if( $user_id && isset($_GET['films'])){
+        allMoviesPage();
+
+    } else if (isset( $_GET['series'])) {
+        //if user clicks on series in dashboard we send him in a view of series
+        allSeriesPage();
+    } else {
+
         homePage();
-    endif;
+    }
 
 endif;
+/****************************
+ * ----- HANDLE SERIES -----*
+ ***************************/
+
+

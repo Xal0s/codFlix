@@ -14,7 +14,7 @@ function homePage() {
 
     $user_data  = User::getUserById( $user_id );
 
-    require('view/dashboardView.php');
+    //require('view/dashboardView.php');
   else:
     require('view/homeView.php');
   endif;

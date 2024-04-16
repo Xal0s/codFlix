@@ -93,7 +93,7 @@ class Media {
         // Open database connection
         $db   = init_db();
 
-        $req  = $db->prepare( "SELECT * FROM media WHERE LOWER(title) LIKE ?" );
+        $req  = $db->prepare( "SELECT * FROM medias WHERE LOWER(title) LIKE ?" );
         $req->execute( array( '%' . strtolower($title) . '%' ));
 
         // Close databse connection
@@ -104,12 +104,42 @@ class Media {
     }
     public static function getAllMovies() {
         $db   = init_db();
-
-        $req  = $db->prepare( "SELECT * FROM media INNER JOIN genre ON media.genre_id = genre.id WHERE type = 'Film' ORDER BY genre.name");
+        $req  = $db->prepare( "SELECT * FROM medias INNER JOIN genre ON medias.genre_id = genre.id WHERE type = 'film'");
         $req->execute();
-
         $db   = null;
 
         return $req->fetchAll();
+    }
+
+    public static function getMovie($id) {
+        $db   = init_db();
+        $req  = $db->prepare( "SELECT * FROM medias  
+        INNER JOIN genre ON medias.genre_id = genre.id
+        WHERE medias.id = ? AND type = 'film'");
+        $req->execute([$id]);
+
+        $db   = null;
+        return $req->fetch();
+    }
+
+    public static function getAllSeries(){
+        $db   = init_db();
+        $req = $db->prepare( "SELECT * FROM medias WHERE type = 'serie'");
+        $req->execute();
+
+        $db = null;
+
+        return $req->fetchAll();
+    }
+
+    public static function getSerie($id) {
+        $db   = init_db();
+        $req  = $db->prepare( "SELECT * FROM medias  
+        INNER JOIN genre ON medias.genre_id = genre.id
+        WHERE medias.id = ? AND type = 'serie'");
+        $req->execute([$id]);
+
+        $db   = null;
+        return $req->fetch();
     }
 }
