@@ -28,7 +28,7 @@
             <div class="form-group">
               <div class="row">
                 <div class="col-md-6">
-                  <input type="submit" name="Valider" class="btn btn-block bg-red" />
+                  <input type="submit" name="Valider" value="Inscription" class="btn btn-block bg-red" />
                 </div>
                 <div class="col-md-6">
                   <a href="index.php?action=login" class="btn btn-block bg-blue">Connexion</a>

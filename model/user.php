@@ -41,7 +41,7 @@ class User {
       throw new Exception( 'Vos mots de passes sont différents' );
     endif;
 
-    $this->password = $password;
+    $this->password = hash("sha256", $password);
   }
 
   /***************************
@@ -65,27 +65,34 @@ class User {
   ************************************/
 
   public function createUser() {
+      try {
+          // Open database connection
+          $db   = init_db();
 
-    // Open database connection
-    $db   = init_db();
+          // Check if email already exist
+          $req  = $db->prepare( "SELECT * FROM user WHERE email = ?" );
+          $req->execute( array( $this->getEmail() ) );
 
-    // Check if email already exist
-    $req  = $db->prepare( "SELECT * FROM user WHERE email = ?" );
-    $req->execute( array( $this->getEmail() ) );
+          if( $req->rowCount() > 0 ) {
+              throw new Exception( "Cette adresse mail est déja rattaché à un compte" );
+          }
 
-    if( $req->rowCount() > 0 ) throw new Exception( "Email ou mot de passe incorrect" );
+          // Insert new user
+          $req->closeCursor();
 
-    // Insert new user
-    $req->closeCursor();
+          $req  = $db->prepare( "INSERT INTO user ( email, password ) VALUES ( :email, :password )" );
+          $req->execute( array(
+              'email'     => $this->getEmail(),
+              'password'  => $this->getPassword()
+          ));
 
-    $req  = $db->prepare( "INSERT INTO user ( email, password ) VALUES ( :email, :password )" );
-    $req->execute( array(
-      'email'     => $this->getEmail(),
-      'password'  => $this->getPassword()
-    ));
+          // Close databse connection
+          $db = null;
 
-    // Close databse connection
-    $db = null;
+      }  catch (Exception $e) {
+          echo $e->getMessage();
+      }
+
 
   }
 
