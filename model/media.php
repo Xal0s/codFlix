@@ -93,8 +93,8 @@ class Media {
         // Open database connection
         $db   = init_db();
 
-        $req  = $db->prepare( "SELECT * FROM media WHERE title = ? ORDER BY release_date DESC" );
-        $req->execute( array( '%' . $title . '%' ));
+        $req  = $db->prepare( "SELECT * FROM media WHERE LOWER(title) LIKE ?" );
+        $req->execute( array( '%' . strtolower($title) . '%' ));
 
         // Close databse connection
         $db   = null;
@@ -102,16 +102,14 @@ class Media {
         return $req->fetchAll();
 
     }
-    public static function getAllMedias() {
+    public static function getAllMovies() {
         $db   = init_db();
 
-        $req  = $db->prepare( "SELECT * FROM media INNER JOIN genre ON media.genre_id = genre.id ORDER BY genre.name");
+        $req  = $db->prepare( "SELECT * FROM media INNER JOIN genre ON media.genre_id = genre.id WHERE type = 'Film' ORDER BY genre.name");
         $req->execute();
 
         $db   = null;
 
         return $req->fetchAll();
     }
-
-
 }

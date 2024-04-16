@@ -14,17 +14,35 @@
 </div>
 
 <div class="media-list">
-    <?php foreach( $medias as $media ): ?>
-        <a class="item" href="index.php?media=<?= $media['id']; ?>">
+
+    <?php if (!isset($_GET['title']) || empty($_GET['title']) ){
+    foreach( $movies as $movie ): ?>
+        <a class="item" href="index.php?media=<?= $movie['id']; ?>">
             <div class="video">
                 <div>
                     <iframe allowfullscreen="" frameborder="0"
-                            src="<?= $media['trailer_url']; ?>" ></iframe>
+                            src="<?= $movie['trailer_url']; ?>" ></iframe>
                 </div>
             </div>
-            <div class="title"><?= $media['title']; ?></div>
+            <div class="title"><?= $movie['title']; ?></div>
         </a>
-    <?php endforeach; ?>
+    <?php endforeach;
+    } else {
+        foreach( $mediasSearch as $media ): ?>
+    <a class="item" href="index.php?media=<?= $media['id']; ?>">
+        <div class="video">
+            <div>
+                <iframe allowfullscreen="" frameborder="0"
+                        src="<?= $media['trailer_url']; ?>" ></iframe>
+            </div>
+        </div>
+        <div class="title"><?= $media['title']; ?></div>
+    </a>
+    <?php endforeach;
+    }
+    ?>
+
+
 </div>
 
 
