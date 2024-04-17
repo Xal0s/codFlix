@@ -43,10 +43,9 @@
                 <footer>Copyright Cod'Flix</footer>
             </div>
         </div>
-
-        <script src="public/lib/jquery/js/jquery-3.5.0.min"></script>
+        <script src="public/lib/jquery/js/jquery-3.5.0.min.js"></script>
         <script src="public/lib/bootstrap/js/bootstrap.min.js"></script>
-
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <script src="public/js/script.js"></script>
     </body>
 

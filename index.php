@@ -34,8 +34,13 @@ if ( isset( $_GET['action'] ) ):
 
         case 'signup':
             // if sign up form has been completed we add new user to database
-          if ( !empty( $_POST ) ) signup();
-          signupPage();
+            if (!empty( $_POST )){
+                signup();
+                loginPage();
+            }
+            else {
+                signupPage();
+            }
 
         break;
 

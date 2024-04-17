@@ -155,4 +155,26 @@ class Media {
         $db   = null;
         return $req->fetch();
     }
+
+    public static function getSeasons($serie){
+        $db   = init_db();
+        $req  = $db->prepare( "SELECT season_num AS seasonNbr FROM seasons
+        INNER JOIN medias ON medias.id = seasons.serie_id
+        WHERE seasons.serie_id = ? GROUP BY seasonNbr ");
+        $req->execute([$serie]);
+
+        $db   = null;
+        return $req->fetchAll();
+    }
+
+    public static function getAllEpisodes($serie){
+        $db   = init_db();
+        $req  = $db->prepare( "SELECT episode_num AS episodeNum, episode_url AS episodeLink, episodes.name AS episodeName, seasons.season_num AS seasonNbr FROM episodes 
+        INNER JOIN seasons ON episodes.id = seasons.episode_id
+        INNER JOIN medias ON medias.id = seasons.serie_id  WHERE seasons.serie_id = ?");
+        $req->execute([$serie]);
+
+        $db   = null;
+        return $req->fetchAll();
+    }
 }

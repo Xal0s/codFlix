@@ -14,7 +14,7 @@ function signupPage() {
   if( !$user->id ):
     require('view/auth/signupView.php');
   else:
-    require('view/homeView.php');
+    require('view/movieListView.php');
   endif;
 
 }
@@ -31,6 +31,7 @@ function signup() {
             $user->setEmail($_POST['email']);
             $user->setPassword($_POST['password']);
             $user->createUser();
+
         } else {
             throw new Exception( "L'inscription n'a pas pu aboutir" );
         }

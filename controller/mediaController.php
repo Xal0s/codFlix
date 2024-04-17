@@ -45,6 +45,9 @@ function seriePage(){
         if ($_GET['serie']) {
             $mediaId = $_GET['serie'];
             $serie = Media::getSerie($mediaId);
+            $i=0;
+            $seasons = Media::getSeasons($mediaId);
+            $episodes = Media::getAllEpisodes($mediaId);
             require('view/serieView.php');
         }else{
             throw new Exception("La série n'existe pas");
