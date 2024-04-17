@@ -17,6 +17,22 @@ if (isset( $_GET['movie'] ) ){
     seriePage();
 }
 
+if (isset($_GET['validate'])) {
+    $user = User::findByToken($_GET['validate']);
+    if ($user) {
+        User::activateUser();;
+        loginPage();
+        exit();
+    } else {
+        // Gérer le cas où le token n'est pas valide
+        // Redirection vers une page d'erreur ou affichage d'un message
+        exit();
+    }
+} else {
+    // Gérer le cas où aucun token n'est fourni dans l'URL
+    // Redirection vers une page d'erreur ou affichage d'un message
+}
+
 
 /**************************
 * ----- HANDLE ACTION -----
@@ -30,6 +46,7 @@ if ( isset( $_GET['action'] ) ):
             // if not connected, redirecting user to loginPage
             if ( !empty( $_POST ) ) login( $_POST );
             else loginPage();
+
         break;
 
         case 'signup':
@@ -47,6 +64,7 @@ if ( isset( $_GET['action'] ) ):
         case 'logout':
             logout();
             break;
+
     endswitch;
 
 else:

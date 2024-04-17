@@ -27,26 +27,39 @@ function loginPage() {
 
 function login( $post ) {
 
-  $data           = new stdClass();
-  $data->email    = $post['email'];
-  $data->password = $post['password'];
+    $data           = new stdClass();
+    $data->email    = $post['email'];
+    $data->password = $post['password'];
 
-  $user           = new User( $data );
-  $userData       = $user->getUserByEmail();
+    $user           = new User( $data );
+    $userData       = $user->getUserByEmail();
 
-  $error_msg      = "Email ou mot de passe incorrect";
+    try {
+        if( $userData && sizeof( $userData ) != 0 ):
 
-  if( $userData && sizeof( $userData ) != 0 ):
-    if( $user->getPassword() == $userData['password'] ):
+            if( $user->getPassword() == $userData['password'] ) {
 
-      // Set session
-      $_SESSION['user_id'] = $userData['id'];
+                if ($userData['is_activated'] == 1){
+                    // Set session
+                    $_SESSION['user_id'] = $userData['id'];
 
-      header( 'location: index.php?films ');
-    endif;
-  endif;
+                    header('location: index.php?films ');
+                }else {
+                    throw new Exception("Votre compte n'a pas été vérifié");
+                }
 
-  require('view/auth/loginView.php');
+            }else{
+
+                throw new Exception("Identifiants ou mot de passe incorrect");
+            }
+
+        endif;
+    } catch ( Exception $e ) {
+        $error_msg = $e->getMessage();
+    }
+
+
+        require('view/auth/loginView.php');
 }
 
 /****************************

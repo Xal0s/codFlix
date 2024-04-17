@@ -97,9 +97,9 @@ class User
             // Insert new user
             $req = $db->prepare("INSERT INTO user ( email, password, account_activation_token ) VALUES ( ?, ?, ? )");
             $req->execute(array(
-                'email' => $this->getEmail(),
-                'password' => $this->getPassword(),
-                'key' => $key
+                $this->getEmail(),
+                $this->getPassword(),
+                $key
             ));
 
             // Close databse connection
@@ -120,28 +120,27 @@ class User
 
         try {
             //Server settings
-            $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
             $mail->isSMTP();                                            //Send using SMTP
             $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->Username   = 'coflix@gmail.com';                     //SMTP username
-            $mail->Password   = 'secret';                               //SMTP password
+            $mail->Username   = 'codflix.confirmation@gmail.com';                     //SMTP username
+            $mail->Password   = 'boti fxcz jhpj nvaj';                             //SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
             $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
             //Recipients
-            $mail->setFrom('coflix@gmail.com', 'Mailer');
+            $mail->setFrom('codflix.confirmation@gmail.com', "Cod'Flix");
             $mail->addAddress($to);     //Add a recipient
 
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
-            $mail->Subject = 'Conformation de votre inscription';
-            $mail->Body    = 'Pour confirmer votre inscription veuillez cliquer sur ce lien' . $key;
+            $mail->Subject = "Confirmation de votre inscription sur Cod'Flix";
+            $mail->Body    = '<p>Pour confirmer votre inscription, veuillez cliquer <a href="http://localhost/codFlix/index.php?validate='. $key.'">ici</a>';
 
             $mail->send();
-            echo 'Un mail à été envoyé';
+            echo '<div class="alert alert-success" role="alert">Mail envoyé !</div>';
         } catch (Exception $e) {
-            echo "Le mail n'est pas parti. Erreur: {$mail->ErrorInfo}";
+            echo '<div class="alert alert-danger" role="alert">Le mail n\'a pas pu s\'envoyer !</div>';
         }
     }
 
@@ -178,6 +177,45 @@ class User
         $db   = null;
 
         return $req->fetch();
+    }
+
+    public static function activateUser() {
+        try {
+            // Valider le token d'activation
+            $token = isset($_GET['validate']) ? $_GET['validate'] : null;
+            if (!$token) {
+                throw new Exception("Token d'activation manquant dans l'URL");
+            }
+
+            // Mettre à jour le champ is_activated dans la base de données
+            $db = init_db();
+            $req = $db->prepare("UPDATE user SET is_activated = ? WHERE account_activation_token = ?");
+            $success = $req->execute([true, $token]);
+
+            // Vérifier si la mise à jour a réussi
+            if (!$success) {
+                throw new Exception("Échec de l'activation de l'utilisateur");
+            }
+
+            // Rediriger l'utilisateur vers une page de confirmation ou de connexion
+            loginPage();
+            exit();
+        } catch (Exception $e) {
+            // Gérer l'erreur de manière appropriée (affichage d'un message d'erreur, journalisation, etc.)
+            echo "Erreur : " . $e->getMessage();
+        }
+    }
+
+    public static function findByToken($token) {
+        // Écrire la requête SQL pour rechercher l'utilisateur par token
+        $db = init_db();
+        $req = $db->prepare("SELECT * FROM user WHERE user.account_activation_token = ?");
+        $req->execute([$token]);
+        $user = $req->fetch(PDO::FETCH_ASSOC);
+        $db = null;
+
+        // Retourner l'utilisateur trouvé ou null s'il n'est pas trouvé
+        return $user;
     }
 
 }
