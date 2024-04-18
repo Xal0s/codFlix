@@ -102,6 +102,8 @@ class Media {
 
     }
 
+    //searchbar function parses all titles of series
+
     public static function filterSeries($title) {
         // Open database connection
         $db   = init_db();
@@ -115,6 +117,8 @@ class Media {
         return $req->fetchAll();
 
     }
+
+    //get all movies from database
     public static function getAllMovies() {
         $db   = init_db();
         $req  = $db->prepare( "SELECT * FROM medias INNER JOIN genre ON medias.genre_id = genre.id WHERE type = 'film'");
@@ -123,7 +127,7 @@ class Media {
 
         return $req->fetchAll();
     }
-
+    //get one movie with its details
     public static function getMovie($id) {
         $db   = init_db();
         $req  = $db->prepare( "SELECT * FROM medias  
@@ -134,7 +138,7 @@ class Media {
         $db   = null;
         return $req->fetch();
     }
-
+    // get all series in database
     public static function getAllSeries(){
         $db   = init_db();
         $req = $db->prepare( "SELECT * FROM medias WHERE type = 'serie'");
@@ -144,7 +148,7 @@ class Media {
 
         return $req->fetchAll();
     }
-
+    //get one serie with its details when clicking on the show on seriePage
     public static function getSerie($id) {
         $db   = init_db();
         $req  = $db->prepare( "SELECT * FROM medias  
@@ -155,7 +159,7 @@ class Media {
         $db   = null;
         return $req->fetch();
     }
-
+    //get the seasons of the serie the user clicked on
     public static function getSeasons($serie){
         $db   = init_db();
         $req  = $db->prepare( "SELECT season_num AS seasonNbr FROM seasons
@@ -166,7 +170,7 @@ class Media {
         $db   = null;
         return $req->fetchAll();
     }
-
+    //get all the episode of one serie the user clicked on
     public static function getAllEpisodes($serie){
         $db   = init_db();
         $req  = $db->prepare( "SELECT episode_num AS episodeNum, episode_url AS episodeLink, episodes.name AS episodeName, seasons.season_num AS seasonNbr, episodes.duration AS duration, medias.summary AS synopsis FROM episodes 

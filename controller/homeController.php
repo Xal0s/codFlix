@@ -8,18 +8,23 @@ require_once( 'model/user.php' );
 
 function homePage() {
 
-  $user_id = isset( $_SESSION['user_id'] ) ? $_SESSION['user_id'] : false;
+    $user_id = isset( $_SESSION['user_id'] ) ? $_SESSION['user_id'] : false;
 
-  if( $user_id ):
+    if( $user_id ):
 
-    $user_data  = User::getUserById( $user_id );
+        $user_data  = User::getUserById( $user_id );
 
-    //require('view/dashboardView.php');
-  else:
-    require('view/homeView.php');
-  endif;
+        //require('view/dashboardView.php');
+    else:
+        require('view/homeView.php');
+    endif;
 
-}
+    }
+
+/***************************
+ * --- LOAD PROFIL PAGE ---*
+ ***************************/
+
 
 function profilPage(){
     try {

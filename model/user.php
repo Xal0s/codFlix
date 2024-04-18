@@ -1,5 +1,6 @@
 <?php
 require_once( 'database.php' );
+//PHP mailer lib is imported to send mail even in local 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
@@ -177,7 +178,7 @@ class User
 
         return $req->fetch();
     }
-
+    //update in database account_activation_token to grant users access to the website
     public static function activateUser() {
         try {
             // Valider le token d'activation
@@ -204,7 +205,7 @@ class User
             echo "Erreur : " . $e->getMessage();
         }
     }
-
+    //find user by its token for activate his account
     public static function findByToken($token) {
         // Écrire la requête SQL pour rechercher l'utilisateur par token
         $db = init_db();

@@ -46,11 +46,15 @@ contactTag.addEventListener('click', (e) =>{
     window.location.href = filmTag.getAttribute('href');
 })
 
+
+let btnConfirm = document.getElementById('actualPasswordConfirmation')
 let btnModUser = document.getElementById('modProfil');
+let btnDeleteUser = document.getElementById('actualPasswordConfirmationDelete')
+
 btnModUser.addEventListener("click", (e) => {
     e.preventDefault();
 });
-let btnConfirm = document.getElementById('actualPasswordConfirmation')
+
 btnConfirm.addEventListener("click", (e) => {
     e.preventDefault()
     let data = {};
@@ -63,8 +67,12 @@ btnConfirm.addEventListener("click", (e) => {
     postUserData(data);
     document.getElementById('actualPassword').value = ''
     document.getElementById('password_confirm').value = ''
-    document.getElementById('email').value = ''
     document.getElementById('password').value = ''
+})
+
+btnDeleteUser.addEventListener('click', (e) =>{
+    e.preventDefault()
+    deleteUser(data)
 })
 
 
@@ -75,6 +83,24 @@ async function postUserData(data){
         formData.append(key, data[key])
     })
     const response = await fetch('http://localhost/codFlix/model/userMod.php', {
+        method : 'POST',
+        body: formData
+    })
+    let json = await response.json();
+    if (json.status === 'success'){
+        console.log(json.message)
+        alert(json.message)
+    }
+    console.log(json);
+}
+
+async function deleteUser(data){
+    console.log(data)
+    let formData = new FormData();
+    Object.keys(data).forEach((key) => {
+        formData.append(key, data[key])
+    })
+    const response = await fetch('http://localhost/codFlix/model/deleteUser.php', {
         method : 'POST',
         body: formData
     })

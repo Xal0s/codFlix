@@ -6,19 +6,21 @@ require_once( 'model/media.php' );
 * ----- LOAD HOME PAGE -----
 ***************************/
 
+//all movies are displayed
+
 function allMoviesPage() {
 
-  $search = $_GET['title'] ?? null;
-  $mediasSearch = Media::filterMovies( $search );
-  $movies = Media::getAllMovies();
-  require('view/movieListView.php');
+    $search = $_GET['title'] ?? null;
+    $mediasSearch = Media::filterMovies( $search );
+    $movies = Media::getAllMovies();
+    require('view/movieListView.php');
 
 }
 
 /***************************
  * ---- LOAD MOVIE PAGE----*
  ***************************/
-
+//one movie with details is displayed
 function moviePage(){
     try {
         if (isset($_GET['movie'])) {
@@ -32,6 +34,8 @@ function moviePage(){
         echo $e->getMessage();
     }
 }
+
+//display all series
 function allSeriesPage(){
 
     $search = $_GET['title'] ?? null;
@@ -39,7 +43,7 @@ function allSeriesPage(){
     $series = Media::getAllSeries();
     require('view/seriesListView.php');
 }
-
+//display one serie with details and its seasons
 function seriePage(){
     try {
         if ($_GET['serie']) {

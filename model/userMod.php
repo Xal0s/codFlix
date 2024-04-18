@@ -1,6 +1,6 @@
 <?php
 require_once 'database.php';
-
+//file that is called when we change users data
 try {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!empty($_POST['email'])) {
@@ -16,26 +16,42 @@ try {
                 $tryingPassword = $_POST['actualPassword'];
                 $userId = $user['id'];
 
-                if (filter_var($mail, FILTER_VALIDATE_EMAIL) && $actualPassword == hash('sha256', $tryingPassword))  {
-                    if (preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()-_+=])[A-Za-z\d!@#$%^&*()-_+=]{8,}$/", $_POST['password'])) {
-                        $passwordHash = hash('sha256', $password);
-                        $stmt = $db->prepare('UPDATE user SET email = ?, password = ? WHERE id = ?');
-                        $stmt->execute([$mail, $passwordHash, $userId]);
+                // if mail is correct
+                if (filter_var($mail, FILTER_VALIDATE_EMAIL))  {
+                    // if user is changing his password
+                    if (!empty($password)) {
+                        //to check if the password is secure
+                        if (preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()-_+=])[A-Za-z\d!@#$%^&*()-_+=]{8,}$/", $_POST['password'])) {
+                            $passwordHash = hash('sha256', $password);
+                            $stmt = $db->prepare('UPDATE user SET email = ?, password = ? WHERE id = ?');
+                            $stmt->execute([$mail, $passwordHash, $userId]);
 
+                            echo json_encode([
+                                'status' => 'success',
+                                'message' => 'Votre profil a été mis à jour'
+                            ]);
+                        } else {
+                            echo json_encode([
+                                'status' => 'error',
+                                'message' => 'Votre mot de passe doit contenir un caractère spécial, un chiffre, une minuscule et une majuscule minimum'
+                            ]);
+                        }
+                    }else{
                         echo json_encode([
                             'status' => 'success',
-                            'message' => 'Votre profil a été mis à jour'
-                        ]);
-                    } else {
-                        echo json_encode([
-                            'status' => 'error',
-                            'message' => 'Votre mot de passe doit contenir un caractère spécial, un chiffre, une minuscule et une majuscule minimum'
+                            'message' => 'Votre adresse mail à bien été changé'
                         ]);
                     }
+                    //if users is changing only his mail adress
+                    if (empty($password)){
+                        $stmt = $db->prepare('UPDATE user SET email = ? WHERE id = ?');
+                        $stmt->execute([$mail, $userId]);
+                    }
+
                 } else {
                     echo json_encode([
                         'status' => 'error',
-                        'message' => 'L\'e-mail ou le mot de passe est incorrect'
+                        'message' => 'L\'e-mail est incorrect'
                     ]);
                 }
             } else {

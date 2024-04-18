@@ -33,7 +33,7 @@ ob_start();
         <div class="form-group w-50">
             <div class="row">
                 <div class="col-md-6">
-                    <input type="submit" class="btn btn-block bg-red" name="deleteAccount" id="deleteAccount" value="Supprimer mon compte">
+                    <input type="submit" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-block bg-red" name="deleteAccount" id="deleteAccount" value="Supprimer mon compte">
                 </div>
             </div>
         </div>
@@ -50,6 +50,23 @@ ob_start();
                         <label for="actualPassword">Mot de passe actuel : </label><br>
                         <input type="password" id="actualPassword" name="actualPassword" placeholder="Mot de passe ...">
                         <input type="submit" id="actualPasswordConfirmation" name="actualPasswordConfirmation" value="Confirmer">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="modifications" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modifications">Voulez-vous confirmer vos modifications ?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="index.php?profil">
+                        <label for="actualPassword">Mot de passe actuel : </label><br>
+                        <input type="password" id="actualPasswordDelete" name="actualPasswordDelete" placeholder="Mot de passe ...">
+                        <button id="actualPasswordConfirmationDelete" name="actualPasswordConfirmationDelete" value="Confirmer">
                     </form>
                 </div>
             </div>
