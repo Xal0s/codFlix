@@ -27,16 +27,20 @@ function signupPage() {
 function signup() {
     try {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $user = new User();
-            $user->setEmail($_POST['email']);
-            $user->setPassword($_POST['password']);
-            $user->createUser();
-
+            if (preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()-_+=])[A-Za-z\d!@#$%^&*()-_+=]{8,}$/", $_POST['password'])) {
+                $user = new User();
+                $user->setEmail($_POST['email']);
+                $user->setPassword($_POST['password']);
+                $user->createUser();
+            } else {
+                throw new Exception("Le mot de passe doit contenir un caractère spécial, un chiffre, une majuscule et une minuscule minimum.");
+            }
         } else {
             throw new Exception( "L'inscription n'a pas pu aboutir" );
         }
     } catch ( Exception $e ) {
-        echo $e->getMessage();
+        $error_msg = $e->getMessage();
     }
+    require('view/auth/signupView.php');
 
 }

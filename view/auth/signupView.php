@@ -37,7 +37,7 @@
             </div>
 
             <span class="error-msg">
-              <?= isset( $e ) ? $e : null; ?>
+          <?= isset( $error_msg ) ? $error_msg : null; ?>
             </span>
           </form>
         </div>

@@ -53,7 +53,6 @@ if ( isset( $_GET['action'] ) ):
             // if sign up form has been completed we add new user to database
             if (!empty( $_POST )){
                 signup();
-                loginPage();
             }
             else {
                 signupPage();

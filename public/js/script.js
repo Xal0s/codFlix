@@ -47,33 +47,24 @@ contactTag.addEventListener('click', (e) =>{
 })
 
 let btnModUser = document.getElementById('modProfil');
-btnModUser.addEventListener("click", async (e) => {
+btnModUser.addEventListener("click", (e) => {
     e.preventDefault();
-    let data = {
-        email: document.getElementById('email').value,
-        password: document.getElementById('password').value,
-        confirm: document.getElementById('password_confirm').value,
-        actualPassword: document.getElementById('actualPassword').value // Ajout du mot de passe actuel
-    };
-
-    if (data.password === data.confirm) {
-        try {
-            const response = await postUserData(data);
-            if (response.status === 'success') {
-                console.log(response.message);
-                alert(response.message);
-            } else {
-                console.error(response.message);
-                alert('Une erreur est survenue lors du traitement de votre demande.');
-            }
-        } catch (error) {
-            console.error('Erreur:', error);
-            alert('Une erreur est survenue lors du traitement de votre demande.');
-        }
-    } else {
-        alert('Les mots de passe ne correspondent pas.');
-    }
 });
+let btnConfirm = document.getElementById('actualPasswordConfirmation')
+btnConfirm.addEventListener("click", (e) => {
+    e.preventDefault()
+    let data = {};
+    data.email = document.getElementById('email').value
+    data.password = document.getElementById('password').value
+    data.confirm = document.getElementById('password_confirm').value
+    data.actualPassword = document.getElementById('actualPassword').value
+    console.log(data)
+    postUserData(data);
+    document.getElementById('actualPassword').value = ''
+    document.getElementById('password_confirm').value = ''
+    document.getElementById('email').value = ''
+    document.getElementById('password').value = ''
+})
 
 
 async function postUserData(data){

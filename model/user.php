@@ -107,11 +107,10 @@ class User
             $this->sendConfirmationInscription($this->getEmail(),$key);
 
         } catch (Exception $e) {
-            echo $e->getMessage();
+            $error_msg = $e->getMessage();
 
         }
-
-
+        require ('view/auth/signupView.php');
     }
 
 
@@ -216,13 +215,6 @@ class User
 
         // Retourner l'utilisateur trouvé ou null s'il n'est pas trouvé
         return $user;
-    }
-
-    public static function updateUserInfo($id){
-        $db = init_db();
-        $req = $db->prepare("UPDATE user SET email = ?, password = ? WHERE id = ?");
-        $req->execute([$_POST['email'], $_POST['password'], $id]);
-        $db = null;
     }
 
 }
