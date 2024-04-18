@@ -5,13 +5,13 @@ try {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!empty($_POST['email'])) {
             $db = init_db();
-            $stmt = $db->prepare('SELECT * FROM user WHERE email = ?');
-            $stmt->execute([$_POST['email']]);
+            $stmt = $db->prepare('SELECT * FROM user WHERE id = ?');
+            $stmt->execute([$_POST['id']]);
             $user = $stmt->fetch();
 
             if ($user) {
                 $mail = $_POST['email'];
-                $password = $_POST['password'];
+                @$password = $_POST['password'];
                 $actualPassword = $user['password'];
                 $tryingPassword = $_POST['actualPassword'];
                 $userId = $user['id'];

@@ -58,6 +58,7 @@ btnConfirm.addEventListener("click", (e) => {
     data.password = document.getElementById('password').value
     data.confirm = document.getElementById('password_confirm').value
     data.actualPassword = document.getElementById('actualPassword').value
+    data.id = document.getElementById('userId').value
     console.log(data)
     postUserData(data);
     document.getElementById('actualPassword').value = ''

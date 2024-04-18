@@ -11,6 +11,9 @@ ob_start();
             <input type="email" name="email" value="<?= $user_data['email'] ?>" id="email" class="form-control" />
         </div>
 
+        <label for="userId"></label>
+        <input type="hidden" name="userId" value="<?= $user_data['id'] ?>" id="userId" class="form-control" />
+
         <div class="form-group w-25">
             <label for="password">Mot de passe</label>
             <input type="password" name="password" placeholder="Changer votre mot de passe" id="password" class="form-control" />
