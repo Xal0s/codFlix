@@ -25,8 +25,13 @@
                                     <div class="modal-body">
                                         <?php foreach ($episodes as $episode){
                                             if ($episode['seasonNbr'] == $season['seasonNbr']){ ?>
-                                                <iframe src="<?= $episode['episodeLink'] ?>" frameborder="0"></iframe>
-                                           <?php }
+                                                <div class="video-frame d-flex row justify-content-center pb-5">
+                                                    <h6><?=$episode['episodeNum'] ?>.  <?= $episode['episodeName'] ?></h6>
+                                                    <iframe src="<?= $episode['episodeLink'] ?>" frameborder="0"></iframe>
+                                                    <p><?= $episode['synopsis'] ?></p>
+                                                    <em><?= $episode['duration'] ?></em>
+                                                </div>
+                                            <?php }
                                         } ?>
                                     </div>
                                 </div>
@@ -45,7 +50,4 @@
 </div>
 <?php $content = ob_get_clean(); ?>
 <?php require('dashboard.php'); ?>
-
-
-<div class="modal-dialog modal-xl">...</div>
 

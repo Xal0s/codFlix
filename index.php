@@ -77,6 +77,10 @@ else:
     } else if (isset( $_GET['series'])) {
         //if user clicks on series in dashboard we send him in a view of series
         allSeriesPage();
+    } else if (isset( $_GET['profil'])) {
+
+        profilPage();
+
     } else {
 
         homePage();

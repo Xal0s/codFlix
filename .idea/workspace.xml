@@ -5,20 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac8ede56-dec0-48d2-a519-b76887e9adab" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/codFlix.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codFlix.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PHPMailer/SECURITY.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PHPMailer/VERSION" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PHPMailer/composer.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PHPMailer/src/DSNConfigurator.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PHPMailer/src/OAuth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PHPMailer/src/OAuthTokenProvider.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PHPMailer/src/POP3.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/loginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/loginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/homeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/homeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/media.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/media.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/user.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/auth/signupView.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/auth/signupView.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/serieView.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/serieView.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +50,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;displayEpisode&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;UserProfil&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/codFlix&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -94,6 +88,14 @@
       <workItem from="1713390583634" duration="5086000" />
       <workItem from="1713395819904" duration="102000" />
       <workItem from="1713395938763" duration="357000" />
+      <workItem from="1713400565324" duration="9000" />
+      <workItem from="1713400610739" duration="551000" />
+      <workItem from="1713401294452" duration="1149000" />
+      <workItem from="1713402474015" duration="64000" />
+      <workItem from="1713402617391" duration="344000" />
+      <workItem from="1713402985986" duration="167000" />
+      <workItem from="1713403202958" duration="549000" />
+      <workItem from="1713403788805" duration="2617000" />
     </task>
     <servers />
   </component>

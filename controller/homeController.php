@@ -20,3 +20,17 @@ function homePage() {
   endif;
 
 }
+
+function profilPage(){
+    try {
+        $user_id = isset( $_SESSION['user_id'] ) ? $_SESSION['user_id'] : false;
+        if ($user_id){
+
+            $user_data = User::getUserById($user_id);
+            require('view/profilView.php');
+        }
+    } catch (Exception $e) {
+        require('view/homeView.php');
+    }
+}
+

@@ -17,9 +17,10 @@
                 <h2 class="title">Bienvenue</h2>
                 <div class="sidebar-menu">
                     <ul>
-                        <li class="active"><a href="index.php?films">Films</a></li>
-                        <li class="active"><a href="index.php?series">Series</a></li>
-                        <li><a href="#">Nous contacter</a></li>
+                        <li id="filmTag" class="active"><a href="index.php?films">Films</a></li>
+                        <li id="serieTag"><a href="index.php?series">Series</a></li>
+                        <li id="profilTag"><a href="index.php?profil">Mon Profil</a></li>
+                        <li id="contactTag"><a href="#">Nous contacter</a></li>
                         <li><a href="index.php?action=logout">Me déconnecter</a></li>
                   </ul>
                 </div>

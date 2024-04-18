@@ -218,4 +218,11 @@ class User
         return $user;
     }
 
+    public static function updateUserInfo($id){
+        $db = init_db();
+        $req = $db->prepare("UPDATE user SET email = ?, password = ? WHERE id = ?");
+        $req->execute([$_POST['email'], $_POST['password'], $id]);
+        $db = null;
+    }
+
 }
